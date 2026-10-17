@@ -101,6 +101,14 @@ The agents may write code but can never get past the safeguards that protect mai
 
 **Protection against manipulation.** The agents take instructions only from the orchestrator and from the user's comments. Text in issues, code or dependencies that looks like instructions is treated as data.
 
+**The repository is public.** Anyone can read the code and open issues, comments and pull requests. So the orchestrator enforces this in code, not only in prompts:
+
+- it acts only on issues, labels and comments created by the repository owner (JWeiderberg); everything else is ignored and never sent to an agent
+- it never runs an agent on a pull request from a fork
+- GitHub Actions requires approval before running workflows for pull requests from outside contributors (repository setting)
+
+Nothing secret or personal goes in the repository: no keys, no connection strings, no real player data.
+
 ## Repository, branches and environments
 
 One repository holds the app, the agent system, the infrastructure and the documentation. Main is always deployable.
@@ -127,7 +135,7 @@ FootballGamePlanner/
 
 - **Branches:** main is protected. Each story gets a branch, `story/<number>-<short-name>`, and a pull request.
 - **Merging:** when CI is green and the reviewer has approved, the pull request is merged automatically. For the first stories the user also reviews and merges each pull request, until the reviewer agent has proven reliable.
-- **Branch protection:** set by the user in GitHub's repository settings: pull request required, the `Build and test` check required and up to date, no force pushes or deletions. No approving review is required, because pull requests are opened under the user's own account and GitHub does not let an author approve their own pull request.
+- **Branch protection:** set by the user in GitHub's repository settings (branch protection requires a public repository on a free GitHub account, which is why the repository is public): pull request required, the `Build and test` check required and up to date, no force pushes or deletions. No approving review is required, because pull requests are opened under the user's own account and GitHub does not let an author approve their own pull request.
 - **Environments:**
   - dev: locally on the user's computer or in the agent's container
   - test: Azure, deployed automatically from main, invented data only
@@ -183,4 +191,5 @@ The system is built one agent at a time, and each step must work end to end befo
 - [x] The user's existing Anthropic API key is used, stored only as a local secret; the monthly cap starts low and is raised once the real cost per story is measured
 - [x] The user reviews and merges pull requests for the first stories personally, until the reviewer agent has proven reliable
 - [x] Everything in the repository is in English; only the app's user interface is Swedish
+- [x] The repository is public, so that main can be protected on a free GitHub account; the orchestrator acts only on content from the owner (may move to GitHub Pro and a private repository later)
 - [ ] A new Azure subscription will be created (by build step 5). Open: monthly budget for test and prod
