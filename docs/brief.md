@@ -1,120 +1,121 @@
-# Produktbrief – Football Game Planner
+# Product brief – Football Game Planner
 
-> Tidigare arbetsnamn: Lagappen. Dokumentet är skrivet på svenska.
+> Former working name: Lagappen.
 
 ## Vision
 
-Football Game Planner låter fotbollsledare planera matcher i förväg från mobilen: trupp, uppställning, planerade byten och jämn speltid på ett ställe.
+Football Game Planner lets football coaches plan matches in advance from their phone: squad, line-up, planned substitutions and fair playing time in one place.
 
-I dag sköts detta ofta med papper, anteckningar och huvudräkning vid sidlinjen. Därför blir speltiden ojämn och det är svårt att i efterhand se vem som spelat vad.
+Today this is often done with paper, notes and mental arithmetic on the touchline. As a result, playing time ends up uneven, and it is hard to see afterwards who played what.
 
-## Användare och roller
+## Users and roles
 
-Användarna är ledare. Ett lag kan ha flera ledare, och en ledare kan ha tillgång till ett eller flera lag.
+The users are coaches ("leaders"). A team can have several leaders, and a leader can have access to one or more teams.
 
-- **Ledare:** loggar in med Google- eller Microsoft-konto, skapar lag och hanterar spelare, matcher, uppställningar och planerade byten.
-- **Lag:** står var för sig. Ingen föreningsnivå i MVP.
-- **Spelare:** sparas med förnamn eller smeknamn, födelseår, nummer och positioner, och kan markeras som gästspelare, men loggar inte in i MVP.
+- **Leader:** signs in with a Google or Microsoft account, creates teams and manages players, matches, line-ups and planned substitutions.
+- **Team:** stands alone. No club level in the MVP.
+- **Player:** stored with first name or nickname, birth year, shirt number and positions, and can be marked as a guest player, but does not sign in in the MVP.
 
-Nya ledare får tillgång via en personlig engångslänk som utgår efter en tid (förslag: 7 dagar). Alla ledare har samma behörighet. Ändrar två ledare samma match samtidigt varnas den som sparar sist och får välja.
+New leaders get access through a personal one-time invite link that expires after a while (proposal: 7 days). All leaders have the same rights. If two leaders edit the same match at the same time, the one who saves last is warned and chooses what to keep.
 
-## MVP-omfång
+## MVP scope
 
-Första versionen täcker bara planeringen före match, från lag till uppställning med planerade byten. Inget registreras under pågående match. Skapade matcher och deras bytesplaner sparas, och ledaren kan öppna och ändra dem fram till matchdagen.
+The first version covers planning before a match only, from team to line-up with planned substitutions. Nothing is recorded during a match. Created matches and their substitution plans are saved, and a leader can open and change them until match day.
 
-| Område | Funktion |
+| Area | Feature |
 | --- | --- |
-| Konto | Inloggning med Google/Microsoft |
-| Lag | Skapa lag, bjuda in fler ledare via inbjudningslänk, växla mellan lag |
-| Spelare | Lägga till spelare och gästspelare med förnamn/smeknamn, födelseår, nummer och föredragna positioner |
-| Spelformer | Färdiga format (5, 7, 9 och 11 mot 11) samt egna; färdiga och egna formationer per spelform |
-| Match | Skapa match med motståndare, datum (obligatoriskt), tid, plats, perioder, speltid och pauser (välj ett tidigare använt upplägg eller skapa nytt; det senast använda föreslås); i samma flöde välja vilka spelare ur truppen som är med (alla förvalda) och ta in gästspelare, tidigare eller nya |
-| Uppställning | Placera spelare på positioner, som lista och på grafisk plan; bänk |
-| Byten | Planera byten och speltid per spelare |
-| Planering | När matchen skapas väljer ledaren mellan föreslaget bytesschema och helt manuell planering; ett förslag kan också tas fram senare |
+| Account | Sign in with Google/Microsoft |
+| Team | Create a team, invite more leaders through an invite link, switch between teams |
+| Players | Add players and guest players with first name/nickname, birth year, shirt number and preferred positions |
+| Game formats | Built-in formats (5, 7, 9 and 11 a side) plus custom ones; built-in and custom formations per format |
+| Match | Create a match with opponent, date (required), time, venue, periods, playing time and breaks (pick a previously used setup or create a new one; the most recently used is preselected); in the same flow, choose which squad players take part (all preselected) and add guest players, previous or new |
+| Line-up | Place players in positions, as a list and on a graphic pitch; bench |
+| Substitutions | Plan substitutions and playing time per player |
+| Planning | When creating a match, the leader chooses between a suggested substitution schedule and fully manual planning; a suggestion can also be requested later |
 
-## Spelformer, byten och speltid
+## Game formats, substitutions and playing time
 
-Kärnan i appen är speltidsplaneringen: ledaren planerar själv, men kan be om ett förslag med jämn speltid.
+The core of the app is playing-time planning: the leader plans, but can ask for a suggestion with fair playing time.
 
-**Spelformer**
+**Game formats**
 
-- Färdiga spelformer: 5, 7, 9 och 11 mot 11.
-- Egna spelformer, där ledaren anger antal spelare. Varje spelform har formationer med positioner placerade på planen, både färdiga och egna.
+- Built-in formats: 5, 7, 9 and 11 a side.
+- Custom formats, where the leader sets the number of players. Each format has formations with positions placed on the pitch, both built-in and custom.
 
-**Byten och speltid**
+**Substitutions and playing time**
 
-- Appen visar planerad speltid per spelare och position.
-- Före match kan ledaren planera speltiden manuellt.
+- The app shows planned playing time per player and position.
+- Before a match, the leader can plan playing time manually.
 
-**Förslag på uppställning**
+**Line-up suggestion**
 
-- Input: trupp, formation, perioder, speltid per period, pauser och antal byten per period.
-- Val: om spelarnas föredragna positioner ska användas.
-- Output: startuppställning plus bytesschema där speltiden blir så lika som möjligt inom matchen, givet antalet byten.
-- Ledaren kan justera bytesplanen manuellt, både ett förslag och en egen plan: byta plats mellan två spelare i samma bytesfönster, eller mellan plan och bänk. Speltiden räknas om direkt, ändrade rutor markeras och förslaget kan återställas.
+- Input: squad, formation, periods, minutes per period, breaks and number of substitutions per period.
+- Option: whether to use the players' preferred positions.
+- Output: a starting line-up plus a substitution schedule where playing time is as equal as possible within the match, given the number of substitutions.
+- The leader can adjust any plan manually, suggested or their own: swap two players in the same substitution window, on the pitch or between pitch and bench. Playing time recalculates at once, edited cells are marked and the suggestion can be restored.
 
-**Regler**
+**Rules**
 
-- Byten sker bara i fasta bytesfönster: ledaren anger antal byten per period.
-- Ledaren väljer målvakt manuellt per period; algoritmen fördelar utespelarna.
-- Förslaget räknas fram av en deterministisk algoritm, inte en AI-modell. Samma input ger samma förslag.
-- En spelare är antingen med i truppen eller inte.
+- Substitutions happen only in fixed substitution windows: the leader sets the number of substitutions per period.
+- The leader picks the goalkeeper manually for each period; the algorithm distributes the outfield players.
+- The suggestion is computed by a deterministic algorithm, not an AI model. The same input always gives the same suggestion.
+- A player is either in the squad or not.
 
-**Föredragna positioner**
+**Preferred positions**
 
-- En spelare har ett eller flera föredragna områden: MV, Back, Mitt eller Anfall. Alla väger lika, utan inbördes ordning.
-- Varje position i en formation hör till ett område, även i egna formationer, där ledaren anger området per position.
-- Jämn speltid går före föredragna positioner. Förslaget följer positionerna så långt det går, och placeringar utanför en spelares områden markeras.
+- A player has one or more preferred areas: GK, Back, Midfield or Attack. All carry equal weight, with no ranking.
+- Every position in a formation belongs to an area, also in custom formations, where the leader sets the area per position.
+- Fair playing time comes before preferred positions. The suggestion follows the positions as far as possible, and placements outside a player's areas are flagged.
 
-**Ändra trupp efter att matchen skapats**
+**Changing the squad after the match is created**
 
-- Ledaren kan byta ut en spelare i truppen, till exempel vid sjukdom eller skada. Ledaren väljer då om ersättaren tar över position och bytesschema, eller om förslaget räknas om. Orsaken sparas aldrig.
-- Ledaren kan lägga till en inlånad spelare, till exempel från en yngre eller äldre årskull, manuellt i matchen. Spelaren sparas i laget som gästspelare och kan återanvändas i senare matcher.
+- The leader can replace a player in the squad, for example because of illness or injury. The leader then chooses whether the replacement takes over position and schedule, or the suggestion is recalculated. The reason is never stored.
+- The leader can add a borrowed player, for example from a younger or older age group, manually to the match. The player is saved in the team as a guest player and can be reused in later matches.
 
-**På matchdagen**
+**On match day**
 
-- Matchvy i mobilen med uppställning och bytesschema.
-- Export av matchens planering till PDF, med uppställning, bytesschema och planerad speltid, så att ledaren kan skriva ut den och slipper telefonen under matchen. Ledaren väljer format vid export: kompakt med enbart lista, eller med grafisk visualisering på plan.
-- Planen går att visa offline när den väl är laddad.
+- Match view on the phone with line-up and substitution schedule.
+- PDF export of the match plan, with line-up, substitution schedule and planned playing time, so the leader can print it and keep the phone in the bag. The leader picks the format at export: compact, list only, or with a graphic pitch.
+- The plan can be viewed offline once it has been loaded.
 
-## Utanför MVP
+## Out of scope for the MVP
 
-Dessa väntar till senare versioner:
+These wait for later versions:
 
-- Föreningsnivå med flera lag och delade spelare
-- Inloggning för spelare och föräldrar, kallelser och anmälan
-- Native mobilapp
-- Matchstatistik utöver speltid (mål, assist)
-- Träningar och närvaro
-- Registrera byten och logga faktisk speltid under pågående match
-- Delning med spelare och föräldrar
-- Jämn speltid över flera matcher
-- Begränsad tillgänglighet, till exempel max speltid för en spelare
-- Dra-och-släpp på den grafiska planen; i MVP byter ledaren plats genom att trycka på två rutor
+- Club level with several teams and shared players
+- Sign-in for players and parents, call-ups and sign-ups
+- Native mobile app
+- Match statistics beyond playing time (goals, assists)
+- Training sessions and attendance
+- Recording substitutions and actual playing time during a match
+- Sharing with players and parents
+- Fair playing time across several matches
+- Partial availability, for example maximum minutes for a player
+- Drag-and-drop on the graphic pitch; in the MVP the leader swaps players by tapping two cells
 
-## Teknik och SDLC
+## Technology and SDLC
 
-Allt byggs i C#/.NET, med kod på GitHub och drift i Azure. Ett agentsystem driver arbetet från krav till deploy.
+Everything is built in C#/.NET, with code on GitHub and hosting in Azure. An agent system drives the work from requirements to deployment.
 
-| Del | Förslag |
+| Part | Choice |
 | --- | --- |
-| Webbapp | ASP.NET Core med Blazor, mobilanpassad |
-| Databas | Azure SQL Database |
-| Inloggning | Google/Microsoft via Microsoft Entra External ID (att verifiera) |
-| Hosting | Azure App Service eller Container Apps |
-| CI/CD | GitHub Actions, miljöerna dev, test och prod |
-| Agentsystem | C#-konsolapp på Anthropics officiella C#-SDK |
+| Web app | ASP.NET Core with Blazor, mobile-first |
+| Database | Azure SQL Database |
+| Sign-in | Google/Microsoft via Microsoft Entra External ID (to be verified) |
+| Hosting | Azure App Service or Container Apps |
+| CI/CD | GitHub Actions, environments dev, test and prod |
+| Agent system | C# console app on Anthropic's official C# SDK |
 
-Agenterna arbetar mot repot: varje steg lämnar en fil eller en pull request. Användaren godkänner vid tre kontrollpunkter: krav, design och deploy till prod. Underkända tester eller granskning skickar arbetet tillbaka till utvecklar-agenten. Se [agentsystem.md](agentsystem.md).
+The agents work against the repository: every step leaves a file or a pull request. The user approves at three checkpoints: requirements, design and deployment to prod. Failing tests or a rejected review send the work back to the developer agent. See [agent-system.md](agent-system.md).
 
-Skala första året: det egna laget eller klubben, tiotals användare. Driften dimensioneras för minimal kostnad. Offline-stödet kräver att webbappen byggs som PWA. Grafisk profil: Strålkastare (mörk, neonmint, typsnittet Sora), men alla färger och typsnitt läggs som designtokens på ett ställe så att profilen kan bytas senare utan kodändringar i komponenterna. PDF-exporten är alltid ljus för utskrift.
+Scale in the first year: the user's own team or club, tens of users. Hosting is sized for minimal cost. Offline support requires the web app to be built as a PWA. Visual profile: "Strålkastare" (Floodlight: dark, neon mint accent, Sora typeface), but all colours and fonts live as design tokens in one place, so the profile can be swapped later without changing components. The PDF export is always light, for printing.
 
-## Beslut
+## Decisions
 
-- [x] Framgångskriteriet är att en match planeras på under 5 minuter
-- [x] Bara svenska i MVP, förberett för fler språk; appens namn är engelskt
-- [x] Personuppgiftsansvarig är ledaren som skapar laget; ingen automatisk radering av matcher
-- [x] Alla ledare kan radera laget efter en bekräftelse
-- [x] Sparade upplägg delas av lagets ledare; hela truppen är förvald när en match skapas
-- [x] Appen heter Football Game Planner; repot är JWeiderberg/FootballGamePlanner på GitHub
+- [x] Success criterion: a match is planned in under 5 minutes
+- [x] Swedish only in the MVP, prepared for more languages; the app's name is English
+- [x] The leader who creates the team is the data controller; matches are never deleted automatically
+- [x] Any leader can delete the team after a confirmation
+- [x] Saved playing-time setups are shared by the team's leaders; the whole squad is preselected when a match is created
+- [x] The app is called Football Game Planner; the repository is JWeiderberg/FootballGamePlanner on GitHub
+- [x] Everything in the repository (code, documentation, issues, pull requests) is in English; only the app's user interface is Swedish

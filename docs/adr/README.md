@@ -1,26 +1,26 @@
-# Arkitekturbeslut (ADR)
+# Architecture decision records (ADR)
 
-Varje arkitekturbeslut är en egen fil: `NNNN-kort-titel.md`, numrerade i följd och aldrig omnumrerade.
+Each architecture decision is its own file: `NNNN-short-title.md`, numbered in sequence and never renumbered.
 
-Ett nytt eller ändrat ADR godkänns av användaren via sin pull request (kontrollpunkt 2 i [agentsystem.md](../agentsystem.md)). Ett beslut som ersätts ändras inte; det får status "Ersatt av NNNN" och ett nytt ADR skrivs.
+A new or changed ADR is approved by the user through its pull request (checkpoint 2 in [agent-system.md](../agent-system.md)). A superseded decision is not edited; it gets the status "Superseded by NNNN" and a new ADR is written.
 
-## Mall
+## Template
 
 ```markdown
-# NNNN. Titel
+# NNNN. Title
 
-- Status: Föreslagen | Godkänd | Ersatt av NNNN
-- Datum: ÅÅÅÅ-MM-DD
+- Status: Proposed | Accepted | Superseded by NNNN
+- Date: YYYY-MM-DD
 
-## Sammanhang
-Vilket problem eller krav som tvingar fram beslutet.
+## Context
+The problem or requirement that forces the decision.
 
-## Beslut
-Vad vi gör.
+## Decision
+What we will do.
 
-## Alternativ
-Vad som övervägdes och varför det valdes bort.
+## Alternatives
+What was considered and why it was rejected.
 
-## Konsekvenser
-Vad som blir lättare, vad som blir svårare, och vilka GDPR-krav som berörs.
+## Consequences
+What becomes easier, what becomes harder, and which GDPR requirements are affected.
 ```

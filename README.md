@@ -1,37 +1,39 @@
 # Football Game Planner
 
-Matchplanering för fotbollsledare: trupp, uppställning, planerade byten och jämn speltid, från mobilen.
+Match planning for football coaches: squad, line-up, planned substitutions and fair playing time, from a phone.
 
-Appen byggs story för story av ett AI-agentsystem med kontrollpunkter där en människa godkänner. Se [docs/agentsystem.md](docs/agentsystem.md).
+The app is built story by story by an AI agent system, with checkpoints where a human approves. See [docs/agent-system.md](docs/agent-system.md).
 
-## Dokument
+The app's user interface is in Swedish for the first version. Everything in this repository (code, documentation, issues and pull requests) is in English.
 
-| Dokument | Innehåll |
+## Documents
+
+| Document | Contents |
 | --- | --- |
-| [docs/brief.md](docs/brief.md) | Produktbrief: vision, MVP-omfång, regler för byten och speltid |
-| [docs/gdpr.md](docs/gdpr.md) | GDPR-analys och kraven GDPR-01 till 12 |
-| [docs/agentsystem.md](docs/agentsystem.md) | Agentsystemet: agenter, kontrollpunkter, behörigheter, teststrategi |
-| [docs/adr/](docs/adr/) | Arkitekturbeslut |
+| [docs/brief.md](docs/brief.md) | Product brief: vision, MVP scope, substitution and playing-time rules |
+| [docs/gdpr.md](docs/gdpr.md) | GDPR analysis and requirements GDPR-01 to GDPR-12 |
+| [docs/agent-system.md](docs/agent-system.md) | The agent system: agents, checkpoints, permissions, test strategy |
+| [docs/adr/](docs/adr/) | Architecture decision records |
 
-Dokumenten i `docs/` är dem agenterna läser och utgår från.
+The documents in `docs/` are what the agents read and work from.
 
-## Struktur
+## Structure
 
 ```
 src/
-  FootballGamePlanner.Web/             Blazor-webbapp (mobilanpassad, blir PWA)
-  FootballGamePlanner.Domain/          domänmodell och förslagsalgoritmen
-  FootballGamePlanner.Infrastructure/  databas och inloggning
+  FootballGamePlanner.Web/             Blazor web app (mobile-first, becomes a PWA)
+  FootballGamePlanner.Domain/          domain model and the line-up suggestion algorithm
+  FootballGamePlanner.Infrastructure/  database and sign-in
 tests/
   FootballGamePlanner.Domain.Tests/
   FootballGamePlanner.Web.Tests/
-docs/                                  brief, GDPR, agentsystem, ADR:er
-.github/workflows/ci.yml               bygge och tester för varje pull request
+docs/                                  brief, GDPR, agent system, ADRs
+.github/workflows/ci.yml               build and tests for every pull request
 ```
 
-## Kom igång
+## Getting started
 
-Kräver [.NET 10 SDK](https://dotnet.microsoft.com/download).
+Requires the [.NET 10 SDK](https://dotnet.microsoft.com/download).
 
 ```bash
 dotnet restore
@@ -40,10 +42,11 @@ dotnet test
 dotnet run --project src/FootballGamePlanner.Web
 ```
 
-## Regler för bidrag
+## Contribution rules
 
-- `main` är skyddad: alla ändringar går via pull request med grön CI.
-- En branch per story: `story/<issue-nummer>-<kort-namn>`.
-- Varningar räknas som fel, och NuGet-paket med kända sårbarheter stoppar bygget.
-- Paketversioner sätts bara i `Directory.Packages.props`.
-- Bara påhittad testdata, aldrig riktiga personuppgifter (se GDPR-analysen).
+- `main` is protected: every change goes through a pull request with green CI.
+- One branch per story: `story/<issue-number>-<short-name>`.
+- Write code, comments, commits, issues, pull requests and documentation in English. Only text shown to users in the app is Swedish.
+- Warnings are errors, and NuGet packages with known vulnerabilities fail the build.
+- Package versions are set only in `Directory.Packages.props`.
+- Use invented test data only, never real personal data (see the GDPR analysis).
