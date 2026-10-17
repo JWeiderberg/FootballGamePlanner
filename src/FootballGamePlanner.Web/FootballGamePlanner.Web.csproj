@@ -1,0 +1,12 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <ItemGroup>
+    <ProjectReference Include="..\FootballGamePlanner.Domain\FootballGamePlanner.Domain.csproj" />
+    <ProjectReference Include="..\FootballGamePlanner.Infrastructure\FootballGamePlanner.Infrastructure.csproj" />
+  </ItemGroup>
+
+  <PropertyGroup>
+    <BlazorDisableThrowNavigationException>true</BlazorDisableThrowNavigationException>
+  </PropertyGroup>
+
+</Project>

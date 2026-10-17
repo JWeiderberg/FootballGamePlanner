@@ -1,0 +1,11 @@
+<Solution>
+  <Folder Name="/src/">
+    <Project Path="src/FootballGamePlanner.Domain/FootballGamePlanner.Domain.csproj" />
+    <Project Path="src/FootballGamePlanner.Infrastructure/FootballGamePlanner.Infrastructure.csproj" />
+    <Project Path="src/FootballGamePlanner.Web/FootballGamePlanner.Web.csproj" />
+  </Folder>
+  <Folder Name="/tests/">
+    <Project Path="tests/FootballGamePlanner.Domain.Tests/FootballGamePlanner.Domain.Tests.csproj" />
+    <Project Path="tests/FootballGamePlanner.Web.Tests/FootballGamePlanner.Web.Tests.csproj" />
+  </Folder>
+</Solution>
