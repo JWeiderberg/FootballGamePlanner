@@ -24,9 +24,13 @@ src/
   FootballGamePlanner.Web/             Blazor web app (mobile-first, becomes a PWA)
   FootballGamePlanner.Domain/          domain model and the line-up suggestion algorithm
   FootballGamePlanner.Infrastructure/  database and sign-in
+agents/
+  FootballGamePlanner.Agents/          the orchestrator and the AI agents (see agents/README.md)
+  prompts/                             one instruction file per agent
 tests/
   FootballGamePlanner.Domain.Tests/
   FootballGamePlanner.Web.Tests/
+  FootballGamePlanner.Agents.Tests/
 docs/                                  brief, GDPR, agent system, ADRs
 .github/workflows/ci.yml               build and tests for every pull request
 ```

@@ -45,6 +45,8 @@ The test agent sees the story and the code but not the developer agent's reasoni
 
 The orchestrator reads each story's status from labels on its issue and calls the next agent. It keeps no database of its own: if it is stopped, it resumes wherever GitHub says the work stands.
 
+Work starts with a request: an issue the user opens and labels with what they want done, for example `run:requirements` for new stories. The labels in use, and how to run the orchestrator, are in [agents/README.md](../agents/README.md).
+
 ```mermaid
 flowchart LR
     S[Story created] --> K1{Checkpoint 1<br/>requirements approved?}
@@ -86,7 +88,7 @@ The agents may write code but can never get past the safeguards that protect mai
 
 **The agents may**
 
-- create branches, commits, issues and pull requests in the FootballGamePlanner repository, through a GitHub App with access to that repository only
+- create branches, commits, issues and pull requests in the FootballGamePlanner repository, through credentials limited to that repository only (see "GitHub access" below)
 - run dotnet build and tests in an isolated container, where only NuGet is reachable from the internet
 - read everything in the repository and write within their own area (see the agent table)
 
@@ -167,7 +169,9 @@ The suggestion algorithm is the core of the app and is tested hardest. It must p
 The agent system is a C# console app built on Anthropic's official C# SDK, without frameworks that hide what the agents do.
 
 - **Agent loop:** each agent is a loop of calls to Claude with tools (tool use). The orchestrator runs the tools, for example reading a file, writing a file or running tests, and sends the results back.
-- **GitHub access:** through Octokit and a GitHub App with access to the FootballGamePlanner repository only.
+- **GitHub access:** through a small client over the GitHub REST API (the agents need only a handful of endpoints, so no client library). While the orchestrator runs locally it uses a fine-grained personal access token limited to this repository and to issues; when it moves to GitHub Actions it switches to a GitHub App with access to this repository only.
+- **Limits per agent run:** at most 40 model calls and 600,000 tokens; the requirements agent may create at most 30 stories per run. A run that hits a limit stops, and its request is labelled `needs-help`.
+- **Testing the agents:** the loop, the tools and the orchestrator are tested with a scripted fake model and an in-memory GitHub. CI never calls the real API.
 - **Isolation:** the developer and test agents work in a Docker container with a clone of the repository.
 - **Model choice:** Opus for requirements, architecture and review, where judgement matters most. Sonnet for code, tests and CI, where the volume is largest.
 - **Cost control:** each story has a token budget, and the Anthropic account has a monthly cap. The brief, ADRs and GDPR requirements are cached in the prompt, since they are sent with almost every call.
@@ -192,4 +196,7 @@ The system is built one agent at a time, and each step must work end to end befo
 - [x] The user reviews and merges pull requests for the first stories personally, until the reviewer agent has proven reliable
 - [x] Everything in the repository is in English; only the app's user interface is Swedish
 - [x] The repository is public, so that main can be protected on a free GitHub account; the orchestrator acts only on content from the owner (may move to GitHub Pro and a private repository later)
+- [x] Build step 1 is done: solution, CI, Dependabot and docs are in main, and main is protected by a ruleset
+- [x] Requests are issues opened by the owner and labelled `run:requirements`; the orchestrator reports back on the request and labels it `agent-done` or `needs-help`
+- [x] GitHub access uses a fine-grained personal access token while the orchestrator runs locally, and a GitHub App once it runs in GitHub Actions
 - [ ] A new Azure subscription will be created (by build step 5). Open: monthly budget for test and prod
